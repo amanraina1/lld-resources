@@ -1,0 +1,8 @@
+{
+    "name": "lld/parking-lot",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
