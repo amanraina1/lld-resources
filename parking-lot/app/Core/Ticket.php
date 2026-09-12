@@ -8,12 +8,12 @@ use DateTimeImmutable;
 
 class Ticket
 {
-    public string $ticketId;
-    public ParkingSpot $spot;
+    private string $ticketId;
+    private ParkingSpot $spot;
     private Vehicle $vehicle;
-    public DateTimeImmutable $entryTime;
-    public DateTimeImmutable $exitTime;
-    public float $charges;
+    private DateTimeImmutable $entryTime;
+    private ?DateTimeImmutable $exitTime = null;
+    private ?float $charges = null;
 
     public function __construct(ParkingSpot $spot, Vehicle $vehicle)
     {
@@ -31,6 +31,36 @@ class Ticket
     public function setExitTime(DateTimeImmutable $exitTime)
     {
         $this->exitTime = $exitTime;
+    }
+
+    public function getTicketId(): string
+    {
+        return $this->ticketId;
+    }
+
+    public function getSpot(): ParkingSpot
+    {
+        return $this->spot;
+    }
+
+    public function getVehicle(): Vehicle
+    {
+        return $this->vehicle;
+    }
+
+    public function getEntryTime(): DateTimeImmutable
+    {
+        return $this->entryTime;
+    }
+
+    public function getExitTime(): ?DateTimeImmutable
+    {
+        return $this->exitTime;
+    }
+
+    public function getCharges(): ?float
+    {
+        return $this->charges;
     }
 
     private function randomString()

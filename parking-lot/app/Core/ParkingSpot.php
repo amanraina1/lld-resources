@@ -24,7 +24,7 @@ class ParkingSpot
 
     public function assignVehicle(Vehicle $vehicle)
     {
-        if($this->vehicle === null && $vehicle->vehicleType === $this->vehicleType)
+        if($this->vehicle === null && $vehicle->getVehicleType() === $this->vehicleType)
         {
             $this->vehicle = $vehicle;
             return true;

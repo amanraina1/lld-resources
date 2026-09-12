@@ -6,9 +6,9 @@ use App\Enums\VehicleType;
 
 class Vehicle
 {
-    public string $vehicleNumber;
+    private string $vehicleNumber;
 
-    public VehicleType $vehicleType;
+    private VehicleType $vehicleType;
 
     public function __construct(string $vehicleNumber, VehicleType $vehicleType)
     {

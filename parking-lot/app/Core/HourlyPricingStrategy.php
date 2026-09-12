@@ -20,7 +20,7 @@ class HourlyPricingStrategy implements PricingStrategy
         // uncomment this line and comment the diff calculation for demo, it will add 2.5 hours in the exit time
         // $this->addDummyValueInExitTime($ticket);
 
-        $diff = diff($ticket->entryTime, $ticket->exitTime);
+        $diff = diff($ticket->getEntryTime(), $ticket->getExitTime());
         $totalCost = max(ceil($diff), 1) * $this->ratePerHour;
         return (int) $totalCost;
     }

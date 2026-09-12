@@ -26,7 +26,7 @@ class ParkingLotService
 
     public function parkVehicle(Vehicle $vehicle) : Ticket
     {
-        $spot = $this->allocationStrategy->findSpot($this->parkingFloors, $vehicle->vehicleType);
+        $spot = $this->allocationStrategy->findSpot($this->parkingFloors, $vehicle->getVehicleType());
 
         if(!$spot)
         {
@@ -40,22 +40,22 @@ class ParkingLotService
 
         $ticket = new Ticket($spot, $vehicle);
 
-        $this->activeTickets[$ticket->ticketId] = $ticket;
+        $this->activeTickets[$ticket->getTicketId()] = $ticket;
 
         return $ticket;
     }
 
     public function unparkVehicle(Ticket $ticket)
     {
-        if(! array_key_exists($ticket->ticketId, $this->activeTickets))
+        if(! array_key_exists($ticket->getTicketId(), $this->activeTickets))
         {
             throw new \Exception("No ticket found with this id !!");
         }
 
         $ticket->setExitTime(now());
         $ticket->closeTicket($this->pricingStrategy->calculateCharges($ticket));
-        $ticket->spot->unassignVehicle();
-        unset($this->activeTickets[$ticket->ticketId]);
-        return $ticket->charges;
+        $ticket->getSpot()->unassignVehicle();
+        unset($this->activeTickets[$ticket->getTicketId()]);
+        return $ticket->getCharges();
     }
 }

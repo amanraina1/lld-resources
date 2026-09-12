@@ -6,7 +6,6 @@ require_once __DIR__ . '/../app/helpers.php';
 use App\ParkingLotApplication;
 use App\Service\ParkingLotService;
 use App\Core\ParkingFloor;
-use App\Core\ParkingSpot;
 use App\Core\HourlyPricingStrategy;
 use App\Enums\VehicleType;
 use App\Core\Vehicle;
