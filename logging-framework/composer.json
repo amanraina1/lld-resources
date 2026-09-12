@@ -1,0 +1,9 @@
+{
+    "name": "lld/logging-framework",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
+
