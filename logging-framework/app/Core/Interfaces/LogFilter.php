@@ -2,11 +2,12 @@
 
 namespace App\Core\Interfaces;
 
-use Core\LogLevel;
+use App\Core\LogLevel;
+use App\Core\LogMessage;
 
 interface LogFilter
 {
-    public function shoudlLog(string $message) : boolean
+    public function shoudlLog(LogMessage $message) : boolean
 
     public function setLevel(LogLevel $level) : void;
 

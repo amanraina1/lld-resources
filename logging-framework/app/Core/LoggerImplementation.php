@@ -3,7 +3,6 @@
 namespace App\Core;
 
 use App\Core\Interfaces\Logger;
-//use App\Core\LogMessageBuilder;
 use App\Core\LogMessage;
 use App\Core\LogLevel;
 use App\Core\Interfaces\LogAppender;
@@ -19,7 +18,7 @@ class LoggerImplementation implements Logger
 
     public function __construct(string $name, bool $addDefaultAppender = true)
     {
-        $this->name = $name ?? 'DefaultAppender';
+        $this->name = $name;
         $this->level = LogLevel::DEBUG;
         $this->appenders = [];
         $this->filters = [];
@@ -58,10 +57,12 @@ class LoggerImplementation implements Logger
     {
         if(! $level->isGreaterOrEqual($this->level)) return;
 
+        $className = (new \ReflectionClass($this))->getShortName();
+
         $message = LogMessage::builder()
             ->level($level)
             ->message($message)
-            ->source('parentClass')
+            ->source($className)
             ->build();
 
         foreach($this->filters as $filter) {
@@ -85,7 +86,7 @@ class LoggerImplementation implements Logger
     }
     public function addFilter(LogFilter $filter) : void
     {
-        $this->filter[] = $filter;
+        $this->filters[] = $filter;
     }
     public function removeFilter(LogFilter $filter) : void
     {
@@ -93,11 +94,11 @@ class LoggerImplementation implements Logger
             array_filter($this->filters, fn($f) => $f !== $filter)
         );
     }
-    public function getAppenders() : LogAppender
+    public function getAppenders() : array
     {
         return $this->appenders;
     }
-    public function getFilters() : LogFilter
+    public function getFilters() : array
     {
         return $this->filters;
     }

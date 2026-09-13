@@ -66,25 +66,25 @@ class LogMessageBuilder
     {
         $this->timestamp = now();
     }
-    public function message(string $message) : \App\Core\LogMessageBuilder
+    public function message(string $message)
     {
         $this->message = $message;
         return $this;
     }
 
-    public function level(LogLevel $level) : LogMessageBuilder
+    public function level(LogLevel $level)
     {
         $this->level = $level;
         return $this;
     }
 
-    public function timestamp(DateTimeImmutable $timestamp) : LogMessageBuilder
+    public function timestamp(DateTimeImmutable $timestamp)
     {
         $this->timestamp = $timestamp;
         return $this;
     }
 
-    public function source(string $source) : LogMessageBuilder
+    public function source(string $source)
     {
         $this->source = $source;
         return $this;

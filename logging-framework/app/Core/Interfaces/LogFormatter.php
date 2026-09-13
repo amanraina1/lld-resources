@@ -2,6 +2,8 @@
 
 namespace App\Core\Interfaces;
 
+use App\Core\LogMessage;
+
 interface LogFormatter
 {
     public function format(LogMessage $message) : string;

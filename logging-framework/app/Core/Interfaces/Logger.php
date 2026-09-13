@@ -19,6 +19,6 @@ interface Logger
     public function addFilter(LogFilter $filter);
     public function removeFilter(LogFilter $filter);
 
-    public function getAppenders();
-    public function getFilters();
+    public function getAppenders() : array;
+    public function getFilters() : array;
 }
